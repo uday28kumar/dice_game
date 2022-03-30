@@ -19,7 +19,7 @@ class DiceGame:
     def __initPlayers(self, n):
         players = []
         for i in range(n):
-            players.append(Player("Player-"+str(i)))
+            players.append(Player("Player-"+str(i+1)))
 
         random.shuffle(players)
         return players
@@ -55,13 +55,15 @@ class DiceGame:
 
         while not self.__isGameOver():
             currentPlayer = self.players[self.nextPlayer]
-            if(currentPlayer.havePanality is True or currentPlayer.points >= self.targetPoint):
-                if currentPlayer.havePanality is True:
-                    self.players[self.nextPlayer].lastPoint[0] = 0
+            if(currentPlayer.havePanality() is True or currentPlayer.points >= self.targetPoint):
+                if currentPlayer.havePanality() is True:
+                    print(
+                        currentPlayer.name + " You didn't get change because of penality(reason: got 1 in last two chance)")
+                    self.players[self.nextPlayer].lastPoints[0] = 0
                 self.nextPlayer = (self.nextPlayer + 1) % self.numberOfPlayers
                 continue
 
-            if currentPlayer.haveBonusChance is True:
+            if currentPlayer.haveBonusChance() is True:
                 input(currentPlayer.name +
                       " Got another chance (Roll the dice again): ")
             else:
@@ -71,7 +73,7 @@ class DiceGame:
             value = self.dice.roll()
             print(value)
             currentPlayer.addPoint(value)
-            if currentPlayer.haveBonusChance:
+            if currentPlayer.haveBonusChance() is False:
                 self.nextPlayer = (self.nextPlayer + 1) % self.numberOfPlayers
 
             if currentPlayer.points >= self.targetPoint:
