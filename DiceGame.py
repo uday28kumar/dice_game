@@ -85,5 +85,8 @@ class DiceGame:
 
 n = int(sys.argv[1])
 target = int(sys.argv[2])
-diceGame = DiceGame(n, target)
-diceGame.play()
+if n <= 0 or target <= 0:
+    print("Invalid Inputs!")
+else:
+    diceGame = DiceGame(n, target)
+    diceGame.play()
