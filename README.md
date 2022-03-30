@@ -4,6 +4,10 @@ Application is developed in python 3.10
 **System Requirement**
 1. python 3.10 or later version
 
+**Class Diagram**
+![image](https://user-images.githubusercontent.com/30213323/160855036-05ed7ea4-698e-4e08-8276-24b8a7b6b341.png)
+
+
 **How to Run:**
 1. Clone this repository.
 2. Open cmd at path dice_game
